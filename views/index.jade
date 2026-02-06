@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(action='/contact', method='post')
+    label(for='name') Name
+    input#name(type='text', name='name', required=true)
+
+    label(for='email') Email
+    input#email(type='email', name='email', required=true)
+
+    label(for='message') Message
+    textarea#message(name='message', rows='4', required=true)
+
+    button(type='submit') Send
+
+  if submitted
+    h2 Submitted
+    p Name: #{formData.name}
+    p Email: #{formData.email}
+    p Message: #{formData.message}
