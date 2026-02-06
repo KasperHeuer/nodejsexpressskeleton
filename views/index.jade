@@ -4,6 +4,7 @@ block content
   h1= title
   p Welcome to #{title}
 
+  // Simple contact form posted to /contact
   form(action='/contact', method='post')
     label(for='name') Name
     input#name(type='text', name='name', required=true)
@@ -16,6 +17,7 @@ block content
 
     button(type='submit') Send
 
+  // Show submitted values after a POST
   if submitted
     h2 Submitted
     p Name: #{formData.name}
