@@ -1,23 +1,28 @@
 var express = require('express');
-// Router handles endpoints mounted at '/'.
 var router = express.Router();
 
-// Render the home page with the form.
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'asdf' });
+// GET home page
+router.get('/', function (req, res) {
+  res.render('index', {
+    title: 'Hey',
+    message: 'Hello there!'
+  });
 });
 
-// Handle form submission and echo the submitted values.
-router.post('/contact', function (req, res, next) {
-  // Grab fields from the POST body; express.urlencoded() in app.js enables this.
+// Handle form submission
+router.post('/contact', function (req, res) {
   var formData = {
-    name: (req.body && req.body.name) || '',
-    email: (req.body && req.body.email) || '',
-    message: (req.body && req.body.message) || '',
+    name: req.body?.name || '',
+    email: req.body?.email || '',
+    message: req.body?.message || '',
   };
 
-  // Render the same page with a flag so the template shows submitted values.
-  res.render('index', { title: 'asdf', formData: formData, submitted: true });
+  res.render('index', {
+    title: 'asdf',
+    message: 'Form submitted!',
+    formData,
+    submitted: true
+  });
 });
 
 module.exports = router;
